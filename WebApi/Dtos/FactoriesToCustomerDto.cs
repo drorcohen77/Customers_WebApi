@@ -8,11 +8,8 @@ namespace WebApi.Dtos
 {
     public class FactoriesToCustomerDto
     {
-        public int GroupCode { set; get; }
-        public Group? Group { get; set; }
-        public int FactoryCode { set; get; }
-        public Factory? Factory { get; set; }
+        public int? GroupCode { set; get; }
+        public int? FactoryCode { set; get; }
         public string CustomerId { set; get; } = string.Empty;
-        public Customer? Customer { get; set; }
     }
 }

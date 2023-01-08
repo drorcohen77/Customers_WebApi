@@ -9,7 +9,7 @@ namespace WebApi.Dtos
     {
         public string CustomerId { set; get; } = string.Empty;
         public string Name { set; get; } = string.Empty;
-        public int GroupCode { set; get; }
+        public int? GroupCode { set; get; }
         public string GroupName { set; get; } = string.Empty;
     }
 }

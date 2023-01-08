@@ -20,43 +20,44 @@ namespace WebApi.Data.Repositories
         public async Task<IEnumerable<FactoriesToCustomer>> GetCustomersByGroupAsync(int groupCode)
         {
             var customers = await Dc.FactoriesToCustomer
-            .Where(fc => fc.GroupCode == groupCode)
-            .Include(c => c.Customer)
-            .Include(g => g.Group)
-            .ToListAsync();
+                .Where(fc => fc.GroupCode == groupCode)
+                .Include(c => c.Customer)
+                .Include(g => g.Group)
+                .ToListAsync();
 
             return customers;
         }
 
-        public void AddCustomer(CustomerDto customerDto)
+        public void AddCustomer(Customer customer, FactoriesToCustomer factoriesToCustomer)
         {
-            var existCustomer = Dc.Customers.FirstOrDefault(c => c.CustomerId == customerDto.CustomerId);
+            Dc.Customers.AddAsync(customer);
+            Dc.FactoriesToCustomer.AddAsync(factoriesToCustomer);
+        }
 
-            if(existCustomer != null)
-            {
-                var existGroup = Dc.Groups.FirstOrDefault(g => g.GroupCode == customerDto.GroupCode);
-                var existFactory = Dc.Factories.FirstOrDefault(f => f.FactoryCode == customerDto.FactoryCode);
 
-                Customer newCustomer = new Customer
-                {
-                    CustomerId = customerDto.CustomerId,
-                    Name = customerDto.Name,
-                    Address =  customerDto.Address,
-                    Phone = customerDto.Phone
-                };
-                Dc.Customers.AddAsync(newCustomer);
+        public async Task<Customer> FindCustomer(string CustomerId)
+        {
+            return await Dc.Customers.FindAsync(CustomerId);
+        }
 
-                if(existGroup != null && existFactory != null) 
-                {
-                    FactoriesToCustomer factoriesToCustomer = new FactoriesToCustomer
-                    {
-                        FactoryCode = customerDto.FactoryCode,
-                        GroupCode = customerDto.GroupCode,
-                        CustomerId = customerDto.CustomerId
-                    };
-                    Dc.FactoriesToCustomer.AddAsync(factoriesToCustomer);
-                }
-            }
+        public async Task<FactoriesToCustomer> GetCustomersFromFtoC(string customerId, int groupCode, int factoryCode)
+        {
+            var customer = await Dc.FactoriesToCustomer.FirstOrDefaultAsync(
+                fc => fc.CustomerId == customerId && fc.FactoryCode == factoryCode && fc.GroupCode == groupCode);
+
+            return customer;
+        }
+
+
+        public void DeleteCustomer(string customerId)
+        {
+            var customer = Dc.Customers.FirstOrDefault(c => c.CustomerId == customerId);
+            var allCustomerRecords = Dc.FactoriesToCustomer
+                .Where(fc => fc.CustomerId == customerId)
+                .ToList();
+
+            Dc.Customers.Remove(customer);
+            Dc.FactoriesToCustomer.RemoveRange(allCustomerRecords);
         }
     }
 }

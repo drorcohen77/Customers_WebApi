@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "RE+lq19NHm0gRDMjdFw3U7wEDTU2vgPt2yfa+dGA39LjUGknZCudrBE0K+81EaH8GJLeP+/p1x6lRKAVr+17sQ==",
+  "dgSpecHash": "cVlvTx2wpPVpZOHH4IYjDOxkmtRqF1x/sxX05RIdjACJ8fYYJCC6eRtCZnllQd4IL2+uU/fpJq5JuGMM5yMURQ==",
   "success": true,
   "projectFilePath": "/Users/drorcohen/Code/Customers_WebApi/WebApi/WebApi.csproj",
   "expectedPackageFiles": [
-    "/Users/drorcohen/.nuget/packages/automapper/12.0.0/automapper.12.0.0.nupkg.sha512",
-    "/Users/drorcohen/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.0/automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
+    "/Users/drorcohen/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
+    "/Users/drorcohen/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/11.0.0/automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "/Users/drorcohen/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/Users/drorcohen/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",
     "/Users/drorcohen/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",

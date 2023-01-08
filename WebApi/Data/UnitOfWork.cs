@@ -15,6 +15,8 @@ namespace WebApi.Data
             this.Dc = dc;
         }
         public ICustomerRepository CustomerRepository => new CustomerRepository(Dc);
+        public IFactoryRepository FactoryRepository => new FactoryRepository(Dc);
+        public IGroupRepository GroupRepository => new GroupRepository(Dc);
 
         public async Task<bool> SaveAsync()
         {

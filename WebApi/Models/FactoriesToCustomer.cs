@@ -7,18 +7,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Models
 {
-    [Keyless]
+    // [Keyless]
     public class FactoriesToCustomer
     {
         [ForeignKey("Group")]
-        public int GroupCode { set; get; }
+        public int? GroupCode { set; get; }
         public Group? Group { get; set; }
 
-        [ForeignKey("Factory")]
-        public int FactoryCode { set; get; }
+        // [ForeignKey("Factory")]
+        public int? FactoryCode { set; get; }
         public Factory? Factory { get; set; }
 
-        [ForeignKey("Customer")]
+        // [ForeignKey("Customer")]
         public string CustomerId { set; get; } = string.Empty;
         public Customer? Customer { get; set; }
     }

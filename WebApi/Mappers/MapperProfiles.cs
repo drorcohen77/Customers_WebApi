@@ -13,6 +13,7 @@ namespace WebApi.Mappers
         public MapperProfiles()
         {
             CreateMap<Customer, CustomerDto>().ReverseMap();
+            CreateMap<FactoriesToCustomer, FactoriesToCustomerDto>();
         }
     }
 }

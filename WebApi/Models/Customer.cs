@@ -13,5 +13,6 @@ namespace WebApi.Models
         public string Name { set; get; } = string.Empty;
         public string Address { set; get; } = string.Empty;
         public string Phone { set; get; } = string.Empty;
+        public IList<FactoriesToCustomer> FactoriesToCustomer { get; set; }
     }
 }

@@ -11,11 +11,11 @@ namespace WebApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_FactoriesToCustomer_Factories_FactoryCode1",
+                name: "FK_FactoriesToCustomer_Factories_FactoryCode",
                 table: "FactoriesToCustomer");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_FactoriesToCustomer_Groups_GroupCode1",
+                name: "FK_FactoriesToCustomer_Groups_GroupCode",
                 table: "FactoriesToCustomer");
 
             migrationBuilder.DropPrimaryKey(
@@ -23,19 +23,19 @@ namespace WebApi.Migrations
                 table: "FactoriesToCustomer");
 
             migrationBuilder.DropIndex(
-                name: "IX_FactoriesToCustomer_FactoryCode1",
+                name: "IX_FactoriesToCustomer_FactoryCode",
                 table: "FactoriesToCustomer");
 
             migrationBuilder.DropIndex(
-                name: "IX_FactoriesToCustomer_GroupCode1",
+                name: "IX_FactoriesToCustomer_GroupCode",
                 table: "FactoriesToCustomer");
 
             migrationBuilder.DropColumn(
-                name: "FactoryCode1",
+                name: "FactoryCode",
                 table: "FactoriesToCustomer");
 
             migrationBuilder.DropColumn(
-                name: "GroupCode1",
+                name: "GroupCode",
                 table: "FactoriesToCustomer");
 
             migrationBuilder.AlterColumn<int>(
@@ -103,13 +103,13 @@ namespace WebApi.Migrations
                 .Annotation("SqlServer:Identity", "1, 1");
 
             migrationBuilder.AddColumn<int>(
-                name: "FactoryCode1",
+                name: "FactoryCode",
                 table: "FactoriesToCustomer",
                 type: "int",
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
-                name: "GroupCode1",
+                name: "GroupCode",
                 table: "FactoriesToCustomer",
                 type: "int",
                 nullable: true);
@@ -125,21 +125,21 @@ namespace WebApi.Migrations
                 column: "FactoryCode1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FactoriesToCustomer_GroupCode1",
+                name: "IX_FactoriesToCustomer_GroupCode",
                 table: "FactoriesToCustomer",
-                column: "GroupCode1");
+                column: "GroupCode");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_FactoriesToCustomer_Factories_FactoryCode1",
+                name: "FK_FactoriesToCustomer_Factories_FactoryCode",
                 table: "FactoriesToCustomer",
                 column: "FactoryCode1",
                 principalTable: "Factories",
                 principalColumn: "FactoryCode");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_FactoriesToCustomer_Groups_GroupCode1",
+                name: "FK_FactoriesToCustomer_Groups_GroupCode",
                 table: "FactoriesToCustomer",
-                column: "GroupCode1",
+                column: "GroupCode",
                 principalTable: "Groups",
                 principalColumn: "GroupCode");
         }

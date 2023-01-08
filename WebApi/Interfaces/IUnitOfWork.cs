@@ -9,6 +9,8 @@ namespace WebApi.Interfaces
     public interface IUnitOfWork
     {
         ICustomerRepository CustomerRepository { get; }
+        IFactoryRepository FactoryRepository { get; }
+        IGroupRepository GroupRepository { get; }
         Task<bool> SaveAsync();
     }
 }

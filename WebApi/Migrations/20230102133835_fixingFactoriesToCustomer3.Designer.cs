@@ -12,8 +12,8 @@ using WebApi.Data;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221229155203_fixingFactoriesToCustomer")]
-    partial class fixingFactoriesToCustomer
+    [Migration("20230102133835_fixingFactoriesToCustomer3")]
+    partial class fixingFactoriesToCustomer3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,16 +50,15 @@ namespace WebApi.Migrations
             modelBuilder.Entity("WebApi.Models.FactoriesToCustomer", b =>
                 {
                     b.Property<string>("CustomerId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("FactoryCode")
+                    b.Property<int?>("FactoryCode")
                         .HasColumnType("int");
 
-                    b.Property<int>("GroupCode")
+                    b.Property<int?>("GroupCode")
                         .HasColumnType("int");
 
-                    b.HasIndex("CustomerId");
+                    b.HasKey("CustomerId", "FactoryCode");
 
                     b.HasIndex("FactoryCode");
 
@@ -81,9 +80,6 @@ namespace WebApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GroupCode")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("GroupCode")
                         .HasColumnType("int");
 
                     b.HasKey("FactoryCode");
@@ -113,22 +109,20 @@ namespace WebApi.Migrations
             modelBuilder.Entity("WebApi.Models.FactoriesToCustomer", b =>
                 {
                     b.HasOne("WebApi.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("FactoriesToCustomer")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WebApi.Models.Factory", "Factory")
-                        .WithMany()
+                        .WithMany("FactoriesToCustomer")
                         .HasForeignKey("FactoryCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WebApi.Models.Group", "Group")
                         .WithMany()
-                        .HasForeignKey("GroupCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GroupCode");
 
                     b.Navigation("Customer");
 
@@ -141,9 +135,21 @@ namespace WebApi.Migrations
                 {
                     b.HasOne("WebApi.Models.Group", "Group")
                         .WithMany()
-                        .HasForeignKey("GroupCode");
+                        .HasForeignKey("GroupCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("WebApi.Models.Customer", b =>
+                {
+                    b.Navigation("FactoriesToCustomer");
+                });
+
+            modelBuilder.Entity("WebApi.Models.Factory", b =>
+                {
+                    b.Navigation("FactoriesToCustomer");
                 });
 #pragma warning restore 612, 618
         }
